@@ -179,6 +179,13 @@ summary::-webkit-details-marker{display:none}
                 </sc-for>
               </select>
 
+              <sc-if value="{{ isOilGas }}" hint-placeholder-val="{{ false }}">
+                <div style="background:oklch(0.97 0.01 235);border-radius:10px;padding:14px 16px;margin:-8px 0 20px">
+                  <div style="font-size:12px;font-weight:600;color:oklch(0.35 0.02 260);margin-bottom:8px">Oil &amp; Gas Lease Royalties: sub-role</div>
+                  <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:oklch(0.3 0.02 260)"><input type="checkbox" checked="{{ d.adBuyer }}" onChange="{{ h.toggleAdBuyer }}" style="width:17px;height:17px">A&amp;D Buyer / Due Diligence Team (Pre-Close Revenue Audit)</label>
+                </div>
+              </sc-if>
+
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:6px">3. Primary User Classification *</label>
               <select value="{{ d.primaryClassification }}" onChange="{{ h.primaryClassification }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
                 <option value="">Select…</option>
@@ -219,6 +226,13 @@ summary::-webkit-details-marker{display:none}
           <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
             <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin-bottom:4px;color:oklch(0.2 0.02 260)">Technical Ingress &amp; Metadata</div>
             <p style="font-size:13px;color:oklch(0.42 0.02 260);margin:0 0 22px">Details specific to your industry, used to configure your ingestion pipeline.</p>
+
+            <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">Evaluation Type</label>
+            <select value="{{ d.evaluationType }}" onChange="{{ h.evaluationType }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1.5px solid oklch(0.85 0.02 235);font-size:14px;background:#fff;margin-bottom:20px">
+              <option value="">Select…</option>
+              <option value="60-Day Read-Only Sandbox Evaluation (Current Portfolio)">60-Day Read-Only Sandbox Evaluation (Current Portfolio)</option>
+              <option value="Pre-Acquisition Seller Audit Link (Transaction Due Diligence)">Pre-Acquisition Seller Audit Link (Transaction Due Diligence)</option>
+            </select>
 
             <sc-if value="{{ isMusic }}" hint-placeholder-val="{{ false }}">
               <label style="display:block;font-size:12.5px;font-weight:600;margin-bottom:8px">3.1 Approximate size of your active catalog? *</label>
@@ -541,7 +555,8 @@ class Component extends DCLogic {
       activeWells:'', scadaCompatible:'', primaryOperators:'',
       licensingFocus:'', shipmentVerification:'', escrowReleases:'', patentCoordinates:'', erpEndpoint:'', bolMetadata:'',
       paymentLag:'', ach:false, wire:false, checks:false,
-      lodDualChannel:false, minThresholdConsent:false
+      lodDualChannel:false, minThresholdConsent:false,
+      adBuyer:false, evaluationType:''
     }
   };
 
@@ -609,7 +624,9 @@ class Component extends DCLogic {
       patent_coordinates: d.patentCoordinates, erp_endpoint: d.erpEndpoint, bol_metadata: d.bolMetadata,
       payment_lag: d.paymentLag, ach: d.ach, wire: d.wire, checks: d.checks,
       account_type: this.state.accountType,
-      lod_dual_channel: d.lodDualChannel, min_threshold_consent: d.minThresholdConsent
+      lod_dual_channel: d.lodDualChannel, min_threshold_consent: d.minThresholdConsent,
+      ad_buyer_due_diligence: d.industry === 'OIL_GAS' ? d.adBuyer : false,
+      evaluation_type: d.evaluationType
     };
     this.setState({ submitted: true });
     const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
@@ -818,6 +835,7 @@ class Component extends DCLogic {
       videoAssetType: this.mkField('videoAssetType'), activeWells: this.mkField('activeWells'),
       licensingFocus: this.mkField('licensingFocus'), patentCoordinates: this.mkField('patentCoordinates'),
       paymentLag: this.mkField('paymentLag'),
+      evaluationType: this.mkField('evaluationType'), toggleAdBuyer: this.mkToggle('adBuyer'),
 
       industryMusic: this.mkChoice('industry','MUSIC'), industryFilm: this.mkChoice('industry','FILM'),
       industryOilGas: this.mkChoice('industry','OIL_GAS'), industryPatent: this.mkChoice('industry','PATENT'),
