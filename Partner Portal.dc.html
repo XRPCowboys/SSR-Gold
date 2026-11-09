@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#dceaf7"/><circle cx="50" cy="42" r="22" fill="#e8571f"/><text x="50" y="80" font-size="14" fill="#1a2033" text-anchor="middle" font-family="sans-serif">SS</text></svg></template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+body{margin:0}
+a{color:inherit}
+a:hover{color:#0A2540}
+@media (max-width:1150px){
+.bj-nav{padding:10px 20px !important}
+.bj-nav-links{display:none !important}
+.bj-section{padding:24px 16px !important}
+.bj-footer{flex-direction:column !important;gap:12px !important;text-align:center !important}
+.bj-mobile-toggle{display:block !important}
+.bj-logo-link{margin-left:-30px !important;min-width:0 !important;flex-shrink:1 !important}
+.bj-logo-img{width:150px !important;height:150px !important;top:-4px !important}
+.bj-logo-text{margin-left:100px !important;font-size:17px !important;overflow:hidden !important;text-overflow:ellipsis !important}
+.bj-optable{grid-template-columns:1fr !important}
+}
+@media (max-width:420px){
+.bj-logo-link{margin-left:-16px !important}
+.bj-logo-img{width:110px !important;height:110px !important;top:0px !important}
+.bj-logo-text{margin-left:72px !important;font-size:14px !important}
+}
+.bj-mobile-toggle{display:none}
+.bj-mobile-toggle summary{list-style:none;cursor:pointer;font-size:26px;line-height:1;color:oklch(0.22 0.02 260);padding:4px 6px}
+.bj-mobile-toggle summary::-webkit-details-marker{display:none}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;color:#333333;font-family:'Inter',sans-serif;background-image:url('background.jpg');background-size:cover;background-position:center 18%;background-repeat:no-repeat;background-attachment:fixed;background-color:oklch(0.93 0.025 235)">
+
+  <div class="bj-nav" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.5)">
+    <a href="index.html" class="bj-logo-link" style="display:flex;align-items:center;text-decoration:none;position:relative;height:100%;margin-left:-40px">
+      <img src="10482.png" class="bj-logo-img" style="position:absolute;top:-6px;left:0;width:137px;height:137px;object-fit:contain;object-position:left top;z-index:5;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25))">
+      <div class="bj-logo-text" style="margin-left:92px;white-space:nowrap;font-family:'Fredoka',sans-serif;font-weight:700;font-size:24px;letter-spacing:0.02em;color:oklch(0.22 0.02 260)">SplitSecond <span style="color:oklch(0.62 0.2 38)">Royalties</span></div>
+    </a>
+    <div class="bj-nav-links" style="display:flex;gap:20px;font-size:13.5px;font-weight:600;color:oklch(0.35 0.02 260);align-items:center;white-space:nowrap">
+      <a href="index.html#proof" style="text-decoration:none">How It Works</a>
+      <a href="Portals.dc.html" style="text-decoration:none">Our Portals</a>
+      <a href="Get Started.dc.html" style="text-decoration:none">Onboarding</a>
+      <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ h.signOut }}" style="background:none;border:1.5px solid oklch(0.8 0.02 235);color:oklch(0.35 0.02 260);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:9px 16px;border-radius:6px;cursor:pointer">Sign Out</button>
+      </sc-if>
+    </div>
+    <details class="bj-mobile-toggle" style="position:relative">
+      <summary>☰</summary>
+      <div style="position:absolute;top:38px;right:0;background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,0.16);padding:10px;min-width:220px;max-width:calc(100vw - 32px);display:flex;flex-direction:column;gap:2px;z-index:70">
+        <a href="index.html#proof" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">How It Works</a>
+        <a href="Portals.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Our Portals</a>
+        <a href="Get Started.dc.html" style="text-decoration:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px">Onboarding</a>
+        <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ h.signOut }}" style="text-align:left;background:none;border:none;padding:12px 16px;border-radius:8px;color:oklch(0.3 0.02 260);font-weight:600;font-size:15px;font-family:'Inter',sans-serif;cursor:pointer">Sign Out</button>
+        </sc-if>
+      </div>
+    </details>
+  </div>
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div class="bj-section" style="padding:96px 56px;text-align:center">
+      <p style="font-size:14px;color:#666666;margin:0">Checking your session…</p>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ false }}">
+    <div class="bj-section" style="padding:64px 56px 40px">
+      <div style="max-width:460px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:28px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#0A2540">B2B PARTNER PORTAL</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px;line-height:1.2;margin:12px 0 10px;color:#0A2540">Secure partner sign-in</h1>
+          <p style="font-size:14px;line-height:1.65;color:#333333;margin:0">Enter the email address on your executed MNDA. If your portal is active, we'll send you a single-use sign-in link, so there is no password to manage.</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.06);padding:28px">
+          <sc-if value="{{ linkSent }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center">
+              <div style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;color:#0A2540">Check your inbox</div>
+              <p style="font-size:13.5px;line-height:1.65;color:#333333;margin:0">We sent a sign-in link to <strong>{{ email }}</strong>. Open it on this device to enter the portal.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notLinkSent }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ h.sendLink }}" style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <label style="font-size:12.5px;font-weight:600;color:#333333">Registered business email</label>
+                <input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ h.setEmail }}" placeholder="you@company.com" style="padding:12px 14px;border-radius:8px;border:1px solid #E5E7EB;font-size:14px;font-family:'Inter',sans-serif">
+              </div>
+              <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+              <sc-if value="{{ declined }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:12.5px;line-height:1.6;color:#333333;background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:12px 14px;margin:0">{{ declined }}</p>
+              </sc-if>
+              <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:12.5px;line-height:1.55;color:oklch(0.5 0.18 30);margin:0">{{ authError }}</p>
+              </sc-if>
+            </form>
+          </sc-if>
+        </div>
+        <p style="font-size:11.5px;line-height:1.6;color:#666666;margin:18px 0 0;text-align:center">Access is limited to B2B operating partners with a countersigned MNDA and an active portal. Everything you upload here is stored in a private bucket that is not publicly readable.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+    <div class="bj-section" style="padding:40px 56px 8px">
+      <div style="max-width:860px;margin:0 auto;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.06);padding:26px 28px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start">
+        <div style="flex:1;min-width:260px">
+          <div style="font-size:11.5px;font-weight:700;letter-spacing:0.1em;color:#666666">B2B PARTNER PORTAL</div>
+          <h1 style="font-family:'Fredoka',sans-serif;font-weight:700;font-size:28px;line-height:1.2;margin:8px 0 8px;color:#0A2540">30-Day Sandbox Audit Setup</h1>
+          <p style="font-size:14px;line-height:1.65;color:#333333;margin:0 0 8px;text-wrap:pretty">Upload 12 months of revenue records and matching deposit data for your assets to run your automated reconciliation audit.</p>
+          <p style="font-size:12px;color:#666666;margin:0">Signed in as {{ email }}</p>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:8px 10px;font-size:12px;color:#666666;white-space:nowrap">
+          <span style="font-weight:600">Asset Category:</span>
+          <select value="{{ vertical }}" onChange="{{ h.setVertical }}" style="border:none;background:transparent;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;color:#0A2540;cursor:pointer;padding:2px">
+            <option value="OIL">Oil &amp; Gas / Land</option>
+            <option value="RENEW">Renewables (Wind / Solar)</option>
+            <option value="MINING">Mining / Hard Minerals</option>
+            <option value="GENERIC">Generic / Multi-Asset</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="bj-section" style="padding:12px 56px">
+      <div style="max-width:860px;margin:0 auto;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.06);padding:26px 28px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+          <div style="width:30px;height:30px;border-radius:50%;background:#0A2540;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:19px;font-weight:700;color:#0A2540">{{ v.s1Label }}</div>
+        </div>
+        <p style="font-size:13.5px;line-height:1.65;color:#333333;margin:0 0 16px 42px">{{ v.s1Helper }}</p>
+
+        <label onDrop="{{ h.dropRoster }}" onDragOver="{{ h.dragOver }}" style="display:block;border:1.5px dashed #9CA3AF;border-radius:10px;padding:26px;text-align:center;cursor:pointer;background:#F8FAFC;margin-bottom:12px">
+          <input type="file" accept=".csv,.xlsx,.xls" onChange="{{ h.pickRoster }}" style="display:none">
+          <div style="font-size:14px;font-weight:600;color:#0A2540">Drag &amp; drop your file here, or click to browse</div>
+          <div style="font-size:12px;color:#666666;margin-top:4px">.csv, .xlsx, .xls</div>
+        </label>
+        <a href="schedule_a_template.csv" download="Schedule_A_Template.csv" style="display:inline-block;font-size:13px;font-weight:600;color:#0A2540;text-decoration:underline">Download Sample Schedule A Template (.csv)</a>
+
+        <sc-if value="{{ rosterBusy }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:13px;color:#666666;margin:14px 0 0">Reading your file…</p>
+        </sc-if>
+        <sc-if value="{{ rosterError }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:13px;line-height:1.55;color:oklch(0.5 0.18 30);margin:14px 0 0">{{ rosterError }}</p>
+        </sc-if>
+        <sc-if value="{{ step1Done }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:16px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden">
+            <div style="background:oklch(0.97 0.03 145);padding:12px 16px;font-size:13px;font-weight:600;color:oklch(0.38 0.12 145)">✓ {{ rosterSummary }}</div>
+            <div style="overflow-x:auto">
+              <div style="min-width:560px">
+                <div style="display:grid;grid-template-columns:1.4fr 1fr 1.2fr 0.9fr;gap:8px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:0.04em;color:#666666;border-bottom:1px solid #E5E7EB;text-transform:uppercase">
+                  <div>{{ v.col1 }}</div><div>{{ v.col2 }}</div><div>{{ v.payer }}</div><div>Interest</div>
+                </div>
+                <sc-for list="{{ rosterPreview }}" as="w" hint-placeholder-count="3">
+                  <div style="display:grid;grid-template-columns:1.4fr 1fr 1.2fr 0.9fr;gap:8px;padding:9px 16px;font-size:12.5px;color:#333333;border-bottom:1px solid #F1F5F9">
+                    <div>{{ w.wellName }}</div><div style="font-family:monospace">{{ w.apiNumber }}</div><div>{{ w.operator }}</div><div style="font-family:monospace">{{ w.nri }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <sc-if value="{{ rosterMore }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:9px 16px;font-size:12px;color:#666666">{{ rosterMore }}</div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div class="bj-section" style="padding:12px 56px">
+      <sc-if value="{{ step2Locked }}" hint-placeholder-val="{{ true }}">
+        <div style="max-width:860px;margin:0 auto;background:rgba(255,255,255,0.7);border:1px solid #E5E7EB;border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:12px">
+          <div style="width:30px;height:30px;border-radius:50%;background:#CBD5E1;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+          <div>
+            <div style="font-family:'Fredoka',sans-serif;font-size:17px;font-weight:700;color:#666666">{{ v.s2Label }}</div>
+            <div style="font-size:12.5px;color:#666666">Unlocks after Step 1 is complete.</div>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ step2Open }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:860px;margin:0 auto;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.06);padding:26px 28px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+            <div style="width:30px;height:30px;border-radius:50%;background:#0A2540;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+            <div style="font-family:'Fredoka',sans-serif;font-size:19px;font-weight:700;color:#0A2540">{{ v.s2Label }}</div>
+          </div>
+          <p style="font-size:13.5px;line-height:1.65;color:#333333;margin:0 0 16px 42px">{{ v.s2Helper }}</p>
+
+          <label onDrop="{{ h.dropStatements }}" onDragOver="{{ h.dragOver }}" style="display:block;border:1.5px dashed #9CA3AF;border-radius:10px;padding:26px;text-align:center;cursor:pointer;background:#F8FAFC;margin-bottom:10px">
+            <input type="file" multiple="{{ true }}" accept=".pdf,.csv,.xlsx,.xls,.zip" onChange="{{ h.pickStatements }}" style="display:none">
+            <div style="font-size:14px;font-weight:600;color:#0A2540">Drag &amp; drop files, a .zip, or an entire folder here</div>
+            <div style="font-size:12px;color:#666666;margin-top:4px">.pdf, .csv, .xlsx, .zip &middot; up to 50 MB per file &middot; click to browse files</div>
+          </label>
+          <label style="display:inline-block;font-size:13px;font-weight:600;color:#0A2540;text-decoration:underline;cursor:pointer;margin-bottom:18px">
+            <input type="file" ref="{{ h.folderInputRef }}" multiple="{{ true }}" onChange="{{ h.pickStatements }}" style="display:none">
+            Or choose a folder from your computer
+          </label>
+
+          <sc-if value="{{ statementsBusy }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:13px;color:#666666;margin:0 0 14px">{{ statementsProgress }}</p>
+          </sc-if>
+          <sc-if value="{{ statementsError }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:13px;line-height:1.55;color:oklch(0.5 0.18 30);margin:0 0 14px">{{ statementsError }}</p>
+          </sc-if>
+
+          <div style="border-top:1px solid #E5E7EB;padding-top:16px">
+            <label style="display:block;font-size:12.5px;font-weight:600;color:#333333;margin-bottom:8px">Or paste a secure Box, Dropbox, OneDrive, or Google Drive folder link:</label>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <input type="url" value="{{ linkInput }}" onChange="{{ h.setLinkInput }}" placeholder="https://" style="flex:1;min-width:220px;padding:11px 13px;border-radius:8px;border:1px solid #E5E7EB;font-size:13.5px;font-family:'Inter',sans-serif">
+              <button onClick="{{ h.importLink }}" disabled="{{ linkBusy }}" style="{{ linkButtonStyle }}">{{ linkButtonLabel }}</button>
+            </div>
+            <sc-if value="{{ linkError }}" hint-placeholder-val="{{ false }}">
+              <p style="font-size:12.5px;color:oklch(0.5 0.18 30);margin:8px 0 0">{{ linkError }}</p>
+            </sc-if>
+          </div>
+
+          <sc-if value="{{ step2Done }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:16px;background:oklch(0.97 0.03 145);border:1px solid oklch(0.88 0.06 145);border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.6;color:oklch(0.38 0.12 145)">
+              <div style="font-weight:700">✓ {{ scanSummary }}</div>
+              <sc-if value="{{ savedLink }}" hint-placeholder-val="{{ false }}">
+                <div style="font-weight:500;word-break:break-all">Folder link on file: {{ savedLink }}</div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+
+    <div class="bj-section" style="padding:0 56px 16px">
+      <div style="max-width:860px;margin:0 auto;background:#F8FAFC;border:1px solid #E5E7EB;border-radius:10px;padding:16px 22px">
+        <div style="font-size:12.5px;font-weight:700;color:#333333;margin-bottom:6px">What happens next</div>
+        <p style="font-size:12.5px;line-height:1.7;color:#666666;margin:0">Once your roster and records are uploaded, there's nothing else to do. We run your 30-day reconciliation audit from the roster and records you uploaded. Uploads are held in a private bucket readable only by SSR administrators.</p>
+      </div>
+    </div>
+
+  </sc-if>
+
+  <div class="bj-section" style="padding:0 56px 28px">
+    <div style="max-width:1180px;margin:0 auto;background:oklch(0.94 0.01 235);border:1.5px solid oklch(0.85 0.02 235);border-radius:10px;padding:16px 22px;font-size:11.5px;line-height:1.6;color:oklch(0.4 0.02 260)">Split Second Royalties LLC is strictly a B2B Software-as-a-Service (SaaS) technology provider. We are not a broker-dealer, investment advisor, custodian, or financial intermediary. The company does not raise capital, sponsor project-level pools, or hold custody of client funds. All white-label instances are managed independently by our licensed operating partners on isolated cloud subdomains.</div>
+  </div>
+
+  <div class="bj-footer" style="padding:36px 56px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:oklch(0.35 0.02 260)">
+    <div>© 2026 SplitSecond Royalties</div>
+    <div style="display:flex;gap:20px"><a href="index.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Home</a><a href="Terms.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Terms</a><a href="Contact.dc.html" style="text-decoration:none;color:oklch(0.35 0.02 260)">Contact</a></div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+const SUPABASE_URL = 'https://ahsjmgofoiqrxptyybcf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_vkx6lvvUQdvuDEvSvlR-1A_dHYlu0MD';
+const BUCKET = 'secure-lease-documents';
+const MAX_BYTES = 50 * 1024 * 1024;
+const STATEMENT_EXT = ['pdf', 'csv', 'xlsx', 'xls', 'zip'];
+const CLOUD_HOSTS = ['box.com', 'dropbox.com', 'onedrive.live.com', '1drv.ms', 'sharepoint.com', 'drive.google.com'];
+
+const VERTICALS = {
+  OIL: { s1Label: 'Upload Well Roster (Schedule A)', s1Helper: 'Drag & drop your CSV or Excel file containing Well Names, API Numbers, Operators, and Decimal Interests.',
+    s2Label: 'Upload Operator Check Stubs & Statements', s2Helper: 'Drag & drop 12 months of operator check stubs, PDF statements, and bank deposit logs for your wells.',
+    col1: 'Well Name', col2: 'API Number', payer: 'Operator', unit: 'wells' },
+  RENEW: { s1Label: 'Upload Asset / Lease Schedule', s1Helper: 'Drag & drop your CSV or Excel file containing Project IDs, Parcel Numbers, Utility Offtakers, and Royalty %.',
+    s2Label: 'Upload Offtaker & Royalty Statements', s2Helper: 'Drag & drop 12 months of utility remittance advice, PPA statements, and bank deposits.',
+    col1: 'Project ID', col2: 'Parcel Number', payer: 'Offtaker', unit: 'assets' },
+  MINING: { s1Label: 'Upload Claim / Tract Schedule', s1Helper: 'Drag & drop your CSV or Excel file containing Claim IDs, Tracts, Mine Operators, and Royalty %.',
+    s2Label: 'Upload Purchaser & Mine Statements', s2Helper: 'Drag & drop 12 months of refinery/smelter check stubs, production reports, and bank deposits.',
+    col1: 'Claim ID', col2: 'Tract', payer: 'Operator', unit: 'claims' },
+  GENERIC: { s1Label: 'Upload Asset Roster', s1Helper: 'Drag & drop your CSV or Excel file containing Asset IDs, Payers/Operators, and Ownership Shares.',
+    s2Label: 'Upload Payer & Revenue Statements', s2Helper: 'Drag & drop 12 months of payer statements, remittance advice, and bank deposits.',
+    col1: 'Asset ID', col2: 'Reference', payer: 'Payer', unit: 'assets' }
+};
+
+const norm = (k) => String(k || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+// Maps whatever headers the client's spreadsheet uses onto our fields.
+function mapHeaders(keys) {
+  const find = (test) => keys.find(k => test(norm(k)));
+  const operator = find(n => n.includes('operator') || n.includes('offtaker') || n.includes('payer') || n.includes('purchaser'));
+  const rest = keys.filter(k => k !== operator);
+  const pick = (test) => rest.find(k => test(norm(k)));
+  return {
+    operator,
+    wellName: pick(n => n.includes('wellname') || n === 'well' || n.includes('assetid') || n.includes('projectid') || n.includes('claimid') || n === 'name' || n.includes('leasename')),
+    apiNumber: pick(n => n.includes('api') || n.includes('parcel') || n.includes('tract') || n.includes('reference')),
+    nri: pick(n => n.includes('nri') || n.includes('decimal') || n.includes('revenueinterest') || n.includes('royalty') || n.includes('ownership') || n.includes('share') || n.includes('interest')),
+    county: pick(n => n.includes('county')),
+    state: pick(n => n === 'state' || n.startsWith('state'))
+  };
+}
+
+function parseCsvText(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  const [head, ...body] = rows.filter(r => r.some(v => String(v).trim()));
+  if (!head) return [];
+  return body.map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ''])));
+}
+
+class Component extends DCLogic {
+  state = {
+    loading: true, session: null, email: '',
+    sending: false, linkSent: false, authError: '', declined: '',
+    vertical: 'OIL',
+    wells: [], rosterFileName: '', rosterBusy: false, rosterError: '',
+    operators: [], pref: {},
+    statementsBusy: false, statementsDone: 0, statementsTotal: 0, statementsError: '', sessionUploaded: 0,
+    linkInput: '', linkBusy: false, linkError: '',
+    letterBusy: false, letterError: '', letters: [], lettersSent: {}, markSentBusyFor: '',
+    integrationEmail: '', integrationEmailBusy: false, integrationEmailMessage: ''
+  };
+
+  async componentDidMount() {
+    if (!window.supabase) { this.setState({ loading: false, authError: 'Could not load the authentication library. Please reload the page.' }); return; }
+    this.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data } = await this.sb.auth.getSession();
+    this.setState({ session: data.session || null, email: data.session?.user?.email || '', loading: false });
+    this.sb.auth.onAuthStateChange((_e, session) => {
+      this.setState({ session: session || null, email: session?.user?.email || this.state.email });
+      if (session) this.loadProfile();
+    });
+    if (data.session) this.loadProfile();
+  }
+
+  componentWillUnmount() { this.state.letters.forEach(l => URL.revokeObjectURL(l.url)); }
+
+  async sendLink(e) {
+    e.preventDefault();
+    const email = this.state.email.trim();
+    if (!email || this.state.sending) return;
+    this.setState({ sending: true, authError: '', declined: '' });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/request-portal-link`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+      if (data.allowed === false) { this.setState({ sending: false, declined: data.message || 'That address is not approved for portal access.' }); return; }
+      this.setState({ sending: false, linkSent: true });
+    } catch (err) {
+      this.setState({ sending: false, authError: err.message || 'We could not send your sign-in link. Please try again shortly.' });
+    }
+  }
+
+  async authedFetch(path, body) {
+    const token = this.state.session?.access_token;
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/${path}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.error) throw new Error(data.error || `Request failed (${res.status})`);
+    return data;
+  }
+
+  async loadProfile() {
+    try {
+      const { profile } = await this.authedFetch('update-profile', {});
+      if (!profile) return;
+      const asText = (v) => { while (v && typeof v === 'object') v = v.name; return typeof v === 'string' ? v : ''; };
+      const ops = (Array.isArray(profile.operators) ? profile.operators : [])
+        .map(o => typeof o === 'string' ? { name: o, itEmail: '' } : { name: asText(o), itEmail: typeof o?.itEmail === 'string' ? o.itEmail : '' })
+        .filter(o => o.name);
+      const wells = Array.isArray(profile.wells) ? profile.wells.filter(w => w && (w.wellName || w.apiNumber)) : [];
+      const ind = String(profile.vertical_type || profile.industry || '').toUpperCase();
+      const vertical = !ind ? 'OIL' : ind.includes('OIL') || ind.includes('LAND') ? 'OIL' : ind.includes('RENEW') || ind.includes('WIND') || ind.includes('SOLAR') ? 'RENEW' : ind.includes('MIN') ? 'MINING' : 'GENERIC';
+      this.setState({
+        vertical, wells, operators: ops,
+        pref: (profile.data_integration_preference && typeof profile.data_integration_preference === 'object') ? profile.data_integration_preference : {},
+        lettersSent: (profile.operator_letters_sent && typeof profile.operator_letters_sent === 'object') ? profile.operator_letters_sent : {},
+        integrationEmail: profile.integration_contact_email || ''
+      });
+    } catch (e) { /* non-fatal — steps just start empty */ }
+  }
+
+  // ---------- Step 1: roster ----------
+  dragOver(e) { e.preventDefault(); }
+
+  dropRoster(e) {
+    e.preventDefault();
+    const file = (e.dataTransfer && e.dataTransfer.files || [])[0];
+    if (file) this.ingestRoster(file);
+  }
+
+  pickRoster(e) {
+    const file = (e.target.files || [])[0];
+    e.target.value = '';
+    if (file) this.ingestRoster(file);
+  }
+
+  async readRows(file) {
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (window.XLSX) {
+      const wb = window.XLSX.read(await file.arrayBuffer(), { type: 'array' });
+      return window.XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { defval: '', raw: false });
+    }
+    if (ext === 'csv') return parseCsvText(await file.text());
+    throw new Error('Excel support failed to load. Please save the file as .csv and try again.');
+  }
+
+  async ingestRoster(file) {
+    if (!/\.(csv|xlsx|xls)$/i.test(file.name)) { this.setState({ rosterError: 'Please upload a .csv, .xlsx, or .xls file.' }); return; }
+    if (file.size > MAX_BYTES) { this.setState({ rosterError: 'That file is larger than 50 MB.' }); return; }
+    this.setState({ rosterBusy: true, rosterError: '' });
+    try {
+      const rows = await this.readRows(file);
+      if (!rows.length) throw new Error('We could not find any rows in that file.');
+      const map = mapHeaders(Object.keys(rows[0]));
+      if (!map.wellName && !map.apiNumber) throw new Error('We could not find a Well Name or API Number column. Please use the sample template headers.');
+      if (!map.operator) throw new Error('We could not find an Operator column. Add an "Operator Name" column so we can match each well to its operator.');
+      const get = (r, k) => (k ? String(r[k] ?? '').trim() : '');
+      const wells = rows.map(r => ({
+        wellName: get(r, map.wellName), apiNumber: get(r, map.apiNumber), operator: get(r, map.operator),
+        nri: get(r, map.nri), county: get(r, map.county), state: get(r, map.state)
+      })).filter(w => w.wellName || w.apiNumber);
+      if (!wells.length) throw new Error('No well rows were found in that file.');
+      const missingOp = wells.filter(w => !w.operator).length;
+      if (missingOp) throw new Error(`${missingOp} row${missingOp > 1 ? 's are' : ' is'} missing an operator name. Fill those in and upload again.`);
+
+      // Keep any contact emails the client already entered for operators still on the roster.
+      const known = new Map(this.state.operators.map(o => [o.name.toLowerCase(), o.itEmail]));
+      const seen = new Set();
+      const operators = [];
+      for (const w of wells) {
+        const key = w.operator.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        operators.push({ name: w.operator, itEmail: known.get(key) || '' });
+      }
+
+      await this.authedFetch('update-profile', { wells });
+      await this.authedFetch('update-profile', { operators });
+      try {
+        const path = `${this.folder()}/schedule-a/${Date.now()}-${this.safeName(file.name)}`;
+        await this.sb.storage.from(BUCKET).upload(path, file, { upsert: false });
+      } catch (err) { console.warn('Raw roster archive failed (parsed data was saved)', err); }
+
+      this.setState({ rosterBusy: false, wells, operators, rosterFileName: file.name, letters: [] });
+    } catch (err) {
+      this.setState({ rosterBusy: false, rosterError: err.message || 'We could not read that file.' });
+    }
+  }
+
+  // ---------- Step 2: statements ----------
+  async collectEntry(entry, prefix, out) {
+    if (entry.isFile) {
+      await new Promise(res => entry.file(f => { out.push({ file: f, path: prefix + f.name }); res(); }, () => res()));
+    } else if (entry.isDirectory) {
+      const reader = entry.createReader();
+      const children = [];
+      let batch;
+      do {
+        batch = await new Promise(res => reader.readEntries(res, () => res([])));
+        children.push(...batch);
+      } while (batch.length);
+      for (const c of children) await this.collectEntry(c, prefix + entry.name + '/', out);
+    }
+  }
+
+  async dropStatements(e) {
+    e.preventDefault();
+    const dt = e.dataTransfer;
+    // Entries must be captured synchronously; the drop payload is cleared after this tick.
+    const entries = Array.from(dt.items || []).map(i => i.webkitGetAsEntry && i.webkitGetAsEntry()).filter(Boolean);
+    const plain = Array.from(dt.files || []);
+    const out = [];
+    if (entries.length) { for (const en of entries) await this.collectEntry(en, '', out); }
+    else plain.forEach(f => out.push({ file: f, path: f.name }));
+    this.uploadStatements(out);
+  }
+
+  pickStatements(e) {
+    const files = Array.from(e.target.files || []).map(f => ({ file: f, path: f.webkitRelativePath || f.name }));
+    e.target.value = '';
+    this.uploadStatements(files);
+  }
+
+  async uploadStatements(items) {
+    if (this.state.statementsBusy) return;
+    const ext = (n) => n.split('.').pop().toLowerCase();
+    const valid = items.filter(it => STATEMENT_EXT.includes(ext(it.file.name)) && it.file.size <= MAX_BYTES && !it.file.name.startsWith('.'));
+    const skipped = items.filter(it => !it.file.name.startsWith('.')).length - valid.length;
+    if (!valid.length) { this.setState({ statementsError: 'No supported files found. Accepted: .pdf, .csv, .xlsx, .xls, .zip up to 50 MB each.' }); return; }
+    this.setState({ statementsBusy: true, statementsError: '', statementsDone: 0, statementsTotal: valid.length });
+    const batch = `${this.folder()}/statements/${Date.now()}`;
+    let done = 0, failed = 0, i = 0;
+    const worker = async () => {
+      while (i < valid.length) {
+        const it = valid[i++];
+        const path = `${batch}/${it.path.split('/').map(p => this.safeName(p)).join('/')}`;
+        const { error } = await this.sb.storage.from(BUCKET).upload(path, it.file, { upsert: false });
+        if (error) failed++; else done++;
+        this.setState({ statementsDone: done + failed });
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+    if (done) {
+      const pref = { ...this.state.pref, statementsReceived: (Number(this.state.pref.statementsReceived) || 0) + done, statementsLastUploadedAt: new Date().toISOString() };
+      try { await this.authedFetch('update-profile', { dataIntegrationPreference: pref }); } catch (err) { console.warn('Could not record upload count', err); }
+      this.setState({ pref });
+    }
+    const notes = [];
+    if (failed) notes.push(`${failed} file${failed > 1 ? 's' : ''} failed to upload. Please try those again.`);
+    if (skipped > 0) notes.push(`${skipped} file${skipped > 1 ? 's were' : ' was'} skipped (unsupported type or over 50 MB).`);
+    this.setState(s => ({ statementsBusy: false, sessionUploaded: s.sessionUploaded + done, statementsError: notes.join(' ') }));
+  }
+
+  async importLink() {
+    const url = this.state.linkInput.trim();
+    let host = '';
+    try { const u = new URL(url); if (u.protocol !== 'https:') throw 0; host = u.hostname.toLowerCase(); } catch (e) { this.setState({ linkError: 'Please paste a full https:// link.' }); return; }
+    if (!CLOUD_HOSTS.some(h => host === h || host.endsWith('.' + h))) { this.setState({ linkError: 'Please use a Box, Dropbox, OneDrive, or Google Drive folder link.' }); return; }
+    this.setState({ linkBusy: true, linkError: '' });
+    try {
+      const pref = { ...this.state.pref, historicalRecordsLink: url, historicalRecordsLinkAddedAt: new Date().toISOString() };
+      await this.authedFetch('update-profile', { dataIntegrationPreference: pref });
+      this.setState({ linkBusy: false, pref, linkInput: '' });
+    } catch (err) {
+      this.setState({ linkBusy: false, linkError: err.message || 'Could not save that link. Please try again.' });
+    }
+  }
+
+  // ---------- Step 3: letters ----------
+  setOperatorEmail(i, value) {
+    this.setState(s => ({ operators: s.operators.map((o, idx) => idx === i ? { ...o, itEmail: value } : o) }));
+  }
+
+  async generateLetters() {
+    if (this.state.letterBusy) return;
+    this.setState({ letterBusy: true, letterError: '' });
+    try {
+      const operators = this.state.operators.map(o => ({ name: o.name, itEmail: o.itEmail.trim() }));
+      await this.authedFetch('update-profile', { operators });
+      const data = await this.authedFetch('generate-operator-letter', {});
+      this.state.letters.forEach(l => URL.revokeObjectURL(l.url));
+      const letters = [];
+      for (const letter of (data.letters || [])) {
+        const bin = atob(letter.pdfBase64);
+        const bytes = new Uint8Array(bin.length);
+        for (let k = 0; k < bin.length; k++) bytes[k] = bin.charCodeAt(k);
+        const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+        const filename = letter.filename || 'Operator_Data_Request_Letter.pdf';
+        letters.push({ url, filename });
+        const a = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click(); a.remove();
+        // Browsers can silently drop rapid-fire download triggers.
+        await new Promise(r => setTimeout(r, 400));
+      }
+      if (!letters.length) throw new Error('No letters were returned. Check that every operator has a contact email.');
+      this.setState({ letterBusy: false, operators, letters });
+    } catch (err) {
+      this.setState({ letterBusy: false, letterError: err.message || 'Could not generate the letters. Please try again.' });
+    }
+  }
+
+  async markLetterSent(operatorName) {
+    if (this.state.markSentBusyFor) return;
+    this.setState({ markSentBusyFor: operatorName });
+    try {
+      await this.authedFetch('mark-operator-letter-sent', { operatorName });
+      this.setState(s => ({ markSentBusyFor: '', lettersSent: { ...s.lettersSent, [operatorName]: new Date().toISOString() } }));
+    } catch (err) {
+      this.setState({ markSentBusyFor: '', letterError: err.message || `Could not confirm ${operatorName} was sent. Please try again.` });
+    }
+  }
+
+  async saveIntegrationEmail() {
+    if (this.state.integrationEmailBusy) return;
+    this.setState({ integrationEmailBusy: true, integrationEmailMessage: '' });
+    try {
+      await this.authedFetch('update-profile', { integrationContactEmail: this.state.integrationEmail.trim() });
+      this.setState({ integrationEmailBusy: false, integrationEmailMessage: 'Saved.' });
+    } catch (err) {
+      this.setState({ integrationEmailBusy: false, integrationEmailMessage: err.message || 'Could not save. Please try again.' });
+    }
+  }
+
+  async signOut() {
+    await this.sb.auth.signOut();
+    this.state.letters.forEach(l => URL.revokeObjectURL(l.url));
+    this.setState({ session: null, linkSent: false, declined: '', wells: [], operators: [], pref: {}, letters: [], lettersSent: {},
+      rosterFileName: '', rosterError: '', statementsError: '', sessionUploaded: 0, linkInput: '', linkError: '', letterError: '',
+      integrationEmail: '', integrationEmailMessage: '', vertical: 'OIL' });
+  }
+
+  folder() { return this.state.session?.user?.id || 'unknown'; }
+  safeName(name) { return String(name).replace(/[^\w.\-]+/g, '_'); }
+
+  navyBtn(busy, disabled) {
+    const off = busy || disabled;
+    return `background:${off ? '#94A3B8' : '#0A2540'};color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:13.5px;padding:12px 20px;border:none;border-radius:8px;cursor:${off ? 'default' : 'pointer'};white-space:nowrap`;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const signedIn = !!s.session;
+    const base = VERTICALS[s.vertical] || VERTICALS.OIL;
+    const v = { ...base, payerLower: base.payer.toLowerCase(), payerPlural: base.payer.toLowerCase() + 's' };
+
+    const wellCount = s.wells.length;
+    const opCount = s.operators.length;
+    const step1Done = wellCount > 0;
+    const received = Number(s.pref.statementsReceived) || 0;
+    const savedLink = s.pref.historicalRecordsLink || '';
+    const step2Done = (received > 0 || !!savedLink);
+    const missingEmails = s.operators.some(o => !o.itEmail.trim());
+
+    const rosterSummary = `${s.rosterFileName ? s.rosterFileName + ': ' : 'Roster on file: '}${wellCount} ${v.unit} across ${opCount} ${opCount === 1 ? v.payerLower : v.payerPlural}`;
+    const scanParts = [];
+    if (received) scanParts.push(`Received ${received} file${received === 1 ? '' : 's'} for ${wellCount} ${v.unit} in your roster`);
+    if (!received && savedLink) scanParts.push(`Folder link received for ${wellCount} ${v.unit} in your roster`);
+
+    return {
+      loading: s.loading,
+      showLogin: !s.loading && !signedIn,
+      signedIn,
+      email: s.email,
+      linkSent: s.linkSent,
+      notLinkSent: !s.linkSent,
+      authError: s.authError,
+      declined: s.declined,
+      sending: s.sending,
+      submitLabel: s.sending ? 'Sending…' : 'Email me a sign-in link',
+      submitStyle: this.navyBtn(s.sending, false) + ';width:100%',
+
+      vertical: s.vertical,
+      v,
+
+      rosterBusy: s.rosterBusy,
+      rosterError: s.rosterError,
+      step1Done,
+      rosterSummary,
+      rosterPreview: s.wells.slice(0, 5),
+      rosterMore: wellCount > 5 ? `+ ${wellCount - 5} more` : '',
+
+      step2Locked: false,
+      step2Open: true,
+      statementsBusy: s.statementsBusy,
+      statementsProgress: `Uploading ${s.statementsDone} of ${s.statementsTotal} files…`,
+      statementsError: s.statementsError,
+      linkInput: s.linkInput,
+      linkBusy: s.linkBusy,
+      linkError: s.linkError,
+      linkButtonLabel: s.linkBusy ? 'Saving…' : 'Import Link',
+      linkButtonStyle: this.navyBtn(s.linkBusy, false),
+      step2Done,
+      scanSummary: scanParts.join('') + '.',
+      savedLink,
+
+      step3Locked: !step2Done,
+      step3Open: step2Done,
+      opRows: s.operators.map((o, i) => ({ name: o.name, itEmail: o.itEmail, setEmail: (e) => this.setOperatorEmail(i, e.target.value) })),
+      missingEmails,
+      letterDisabled: s.letterBusy || missingEmails,
+      letterButtonLabel: s.letterBusy ? 'Generating…' : `Generate ${v.payer} Data Request Letters`,
+      letterButtonStyle: this.navyBtn(s.letterBusy, missingEmails),
+      letterError: s.letterError,
+      lettersReady: s.letters.length > 0,
+      lettersBanner: `${s.letters.length} letter${s.letters.length === 1 ? '' : 's'} generated and downloaded, one per ${v.payerLower}. Sign each one and send it to its matching ${v.payerLower} contact. You can download them again below.`,
+      letterRows: s.letters,
+      showSentRows: s.letters.length > 0 || Object.keys(s.lettersSent).length > 0,
+      sentStatusRows: s.operators.map(o => {
+        const sentAt = s.lettersSent[o.name];
+        const busy = s.markSentBusyFor === o.name;
+        return {
+          name: o.name, isSent: !!sentAt, isNotSent: !sentAt,
+          sentDate: sentAt ? new Date(sentAt).toLocaleDateString() : '',
+          busy, buttonLabel: busy ? 'Notifying…' : 'Mark as sent',
+          markSent: () => this.markLetterSent(o.name)
+        };
+      }),
+
+      integrationEmail: s.integrationEmail,
+      integrationEmailBusy: s.integrationEmailBusy,
+      integrationEmailButtonLabel: s.integrationEmailBusy ? 'Saving…' : 'Save',
+      integrationEmailButtonStyle: this.navyBtn(s.integrationEmailBusy, false),
+      integrationEmailMessage: s.integrationEmailMessage,
+
+      h: {
+        setEmail: (e) => this.setState({ email: e.target.value }),
+        sendLink: (e) => this.sendLink(e),
+        signOut: () => this.signOut(),
+        setVertical: (e) => this.setState({ vertical: e.target.value }),
+        dragOver: (e) => this.dragOver(e),
+        dropRoster: (e) => this.dropRoster(e),
+        pickRoster: (e) => this.pickRoster(e),
+        dropStatements: (e) => this.dropStatements(e),
+        pickStatements: (e) => this.pickStatements(e),
+        folderInputRef: (el) => { if (el) { el.setAttribute('webkitdirectory', ''); el.setAttribute('directory', ''); } },
+        setLinkInput: (e) => this.setState({ linkInput: e.target.value, linkError: '' }),
+        importLink: () => this.importLink(),
+        generateLetters: () => this.generateLetters(),
+        setIntegrationEmail: (e) => this.setState({ integrationEmail: e.target.value }),
+        saveIntegrationEmail: () => this.saveIntegrationEmail()
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
