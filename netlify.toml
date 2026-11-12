@@ -6,3 +6,33 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/preregister"
+  to = "https://sandbox.splitsecondroyalties.com/auth/login"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/waitlist"
+  to = "https://sandbox.splitsecondroyalties.com/auth/login"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/early-access"
+  to = "https://sandbox.splitsecondroyalties.com/auth/login"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Pre-Registration.dc.html"
+  to = "https://sandbox.splitsecondroyalties.com/auth/login"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Pre-Registration"
+  to = "https://sandbox.splitsecondroyalties.com/auth/login"
+  status = 301
+  force = true
